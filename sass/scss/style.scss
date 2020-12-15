@@ -1,0 +1,38 @@
+@import './resets';
+@import './var';
+@import './function';
+@import './mixin';
+
+body{
+    background-color: $primary-color;
+    color: $text-color;
+}
+.main{
+    @include flexCenter(column);
+    width: calc(80% - 40%);
+    margin: 0 auto;
+//&__paragraph代表.main__paragraph   #{&}__paragraph代表.main .main__paragraph
+    #{&}__paragraph1 {    
+        font-weight: weight(bold);
+
+        &:hover{
+            color:pink;
+        }
+    }
+
+    @include mobile{
+        flex-direction: column;
+    }
+
+    #{&}__paragraph2{
+        @extend .main__paragraph1;
+
+        &:hover{
+            color: $accent-color;
+        }
+    }
+}
+
+.light{
+    @include theme($light-theme: false); //dark bg
+}
